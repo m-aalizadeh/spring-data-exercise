@@ -15,20 +15,16 @@ public class Address {
     private String city;
     @Column(nullable = false)
     private String street;
-    @Column(nullable = false)
-    private String addressLine1;
-
     @OneToOne(mappedBy = "address")
     private Employee employee;
 
     public Address() {
     }
 
-    public Address(String postcode, String city, String street, String addressLine1) {
+    public Address(String postcode, String city, String street) {
         this.postcode = postcode;
         this.city = city;
         this.street = street;
-        this.addressLine1 = addressLine1;
     }
 
     public Long getId() {
@@ -61,14 +57,6 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
     }
 
     public Employee getEmployee() {

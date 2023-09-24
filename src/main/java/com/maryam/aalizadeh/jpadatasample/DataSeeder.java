@@ -29,6 +29,8 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private BookMetaDataRepository bookMetaDataRepository;
 
+
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         Category category = new Category("Management and Planning");

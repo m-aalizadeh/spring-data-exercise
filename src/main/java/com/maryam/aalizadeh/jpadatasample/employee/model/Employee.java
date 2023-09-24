@@ -12,6 +12,10 @@ public class Employee {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+
+    @Column(nullable = false)
+    private Double salary;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
@@ -22,9 +26,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, Double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.salary = salary;
     }
 
     public Long getId() {
@@ -51,6 +56,14 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -65,5 +78,17 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", address=" + address +
+                ", department=" + department +
+                '}';
     }
 }
