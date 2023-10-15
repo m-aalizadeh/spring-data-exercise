@@ -1,5 +1,6 @@
 package com.maryam.aalizadeh.jpadatasample;
 
+import com.maryam.aalizadeh.jpadatasample.employee.dto.EmployeeDepartment;
 import com.maryam.aalizadeh.jpadatasample.employee.model.Address;
 import com.maryam.aalizadeh.jpadatasample.employee.model.Department;
 import com.maryam.aalizadeh.jpadatasample.employee.model.Employee;
@@ -125,6 +126,10 @@ public class CompanyDataSeeder implements ApplicationListener<ContextRefreshedEv
                 employee4, employee5, employee6, employee7, employee8,
                 employee9, employee10, employee12, employee13, employee14));
 
-
+//        List<EmployeeDepartment> employees = employeeRepository.getEmployeeByDepartment(1L);
+        employeeRepository.getEmployeeByDepartment(1L).forEach(item -> System.out.println(item.toString()));
+        List<Employee> employeeList = employeeRepository.getEmployeeGreaterSalary(7600.00);
+        System.out.println(employeeList.size());
+        employeeList.forEach(item -> System.out.println(item.toString()));
     }
 }
