@@ -1,11 +1,10 @@
 package com.maryam.aalizadeh.jpadatasample;
 
 import com.maryam.aalizadeh.jpadatasample.employee.dto.EmployeeDepartment;
-import com.maryam.aalizadeh.jpadatasample.employee.model.Address;
-import com.maryam.aalizadeh.jpadatasample.employee.model.Department;
-import com.maryam.aalizadeh.jpadatasample.employee.model.Employee;
+import com.maryam.aalizadeh.jpadatasample.employee.model.*;
 import com.maryam.aalizadeh.jpadatasample.employee.repository.AddressRepository;
 import com.maryam.aalizadeh.jpadatasample.employee.repository.DepartmentRepository;
+import com.maryam.aalizadeh.jpadatasample.employee.repository.EmbeddedEmployeeRepository;
 import com.maryam.aalizadeh.jpadatasample.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -24,6 +23,9 @@ public class CompanyDataSeeder implements ApplicationListener<ContextRefreshedEv
     private AddressRepository addressRepository;
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private EmbeddedEmployeeRepository embeddedEmployeeRepository;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         Department department1 = new Department("department1");
@@ -131,5 +133,12 @@ public class CompanyDataSeeder implements ApplicationListener<ContextRefreshedEv
         List<Employee> employeeList = employeeRepository.getEmployeeGreaterSalary(7600.00);
         System.out.println(employeeList.size());
         employeeList.forEach(item -> System.out.println(item.toString()));
+
+
+        System.out.println("*********************************************************");
+        EmbeddedAddress embeddedAddress = new EmbeddedAddress("99485","Southlake",  "George Str");
+        EmbeddedEmployee embeddedEmployee = new EmbeddedEmployee("Maryam","Aalizadeh",embeddedAddress);
+        EmbeddedEmployee embeddedEmployee1 = embeddedEmployeeRepository.save(embeddedEmployee);
+        System.out.println(embeddedEmployee1.toString());
     }
 }
